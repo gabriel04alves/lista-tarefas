@@ -1,28 +1,68 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+  <section>
+    <cabecalho :valor="titulo" />
+    <div class="container">
+      <adicionar-tarefa @adicionarTarefa="adicionarTarefa" />
+      <listar-tarefas :tarefas="tarefas" />
+      <footer>
+        <em>Altere aqui o título da sua lista de tarefas</em>
+        <entrada-dados v-model="titulo" type="text" />
+      </footer>
+    </div>
+    <rodape />
+  </section>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import Cabecalho from "./components/Cabecalho.vue";
+import Rodape from "./components/Rodape.vue";
+import ListarTarefas from "./components/ListaTarefas.vue";
+import AdicionarTarefa from "./components/AdicionarTarefa.vue";
+import EntradaDados from "./components/templates/EntradaDados.vue";
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    HelloWorld
-  }
-}
+    Cabecalho,
+    Rodape,
+    ListarTarefas,
+    AdicionarTarefa,
+    EntradaDados,
+  },
+  data() {
+    return {
+      titulo: "Minha lista de tarefas",
+      tarefas: [
+        { titulo: "Estudar", checked: false },
+        { titulo: "Programar", checked: true },
+      ],
+    };
+  },
+  methods: {
+    adicionarTarefa(novaTarefa) {
+      this.tarefas.push({
+        titulo: novaTarefa,
+        checked: false,
+      });
+    },
+  },
+};
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+.container {
+  width: 60%;
+  margin: 20px auto 0px auto;
+}
+
+ul li {
+  list-style: none;
+}
+
+.removed {
+  color: gray;
+}
+
+.removed label {
+  text-decoration: line-through;
 }
 </style>
