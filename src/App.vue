@@ -1,11 +1,11 @@
-<template>
+<template id="td">
   <section>
     <cabecalho :valor="titulo" />
     <div class="container">
       <adicionar-tarefa @adicionarTarefa="adicionarTarefa" />
       <listar-tarefas :tarefas="tarefas" />
       <footer>
-        <em>Altere aqui o título da sua lista de tarefas:</em>
+        Altere aqui o título da sua lista de tarefas:
         <entrada-dados v-model="titulo" type="text" />
       </footer>
     </div>
@@ -49,9 +49,12 @@ export default {
 </script>
 
 <style>
+  @import url('https://fonts.googleapis.com/css2?family=Oswald&family=PT+Serif&family=Poppins:wght@100;200&family=Raleway:ital,wght@0,200;0,300;1,200&family=Roboto+Condensed:ital,wght@0,300;1,300&display=swap');  
+
 .container {
   width: 60%;
   margin: 20px auto 0px auto;
+  font-family: 'PT Serif', serif;
 }
 
 ul li {
